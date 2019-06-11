@@ -1,0 +1,93 @@
+<html ng-app="Software">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../../node_modules/angular-material/angular-material.min.css">
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../../../css/font-awesome/css/font-awesome.min.css">
+    <meta name="viewport" content="initial-scale=1" />
+    <title>PharmApp</title>
+</head>
+
+<body layout="column" ng-controller="LabController">
+    <md-toolbar style="background-color: rgba(10, 136, 109, 0.918)" class="md-primary">
+        <h1 class="md-toolbar-tools"><i class="fa fa-flask"></i>Ajouter un laboratoire</h1>
+    </md-toolbar>
+    <md-content layout-padding>
+
+        <form id="labForm" name="labForm" ng-submit="addLaboratory()">
+
+            <div class="block">
+                <md-input-container>
+                    <label>Nom</label>
+                    <input type="text" ng-model="name" name="name" required>
+                </md-input-container>
+            </div>
+
+            <div class="block">
+                <md-input-container>
+                    <label>Adresse</label>
+                    <input type="text" ng-model="address" name="address" required>
+                </md-input-container>
+            </div>
+
+            <div id="registerTel">
+                <div class="block">
+                    <md-input-container>
+                        <label>Téléphone</label>
+                        <input type="text" ng-model="telephone" name="telephone" ng-minlength="9" ng-maxlength="10" required>
+                    </md-input-container>
+                </div>
+
+                <div class="block">
+                    <md-input-container>
+                        <label>Fax</label>
+                        <input type="text" ng-model="fax" name="fax" ng-minlength="9" ng-maxlength="10">
+                    </md-input-container>
+                </div>
+            </div>
+
+            <div class="block">
+                <md-input-container>
+                    <label>Email</label>
+                    <input type="email" ng-model="email" name="email">
+                </md-input-container>
+            </div>
+
+            <div id="registerCity">
+                <div class="block">
+                    <md-input-container>
+                        <label>Code postal</label>
+                        <input type="text" ng-model="postal" name="postal" ng-minlength="5" ng-maxlength="5">
+                    </md-input-container>
+                </div>
+
+                <div class="block">
+                    <md-input-container>
+                        <label>Ville</label>
+                        <input type="text" ng-model="city" name="city">
+                    </md-input-container>
+                </div>
+            </div>
+
+            <md-button style="background-color: rgba(10, 136, 109, 0.918)" class="md-raised md-primary" flex flex-md="100">Ajouter</md-button>
+
+        </form>
+
+    </md-content>
+
+    <!-- Angular Material Dependencies -->
+    <script src="../../../dist/angulars.min.js"></script>
+
+    <script src="../../../app.js"></script>
+    <script src="../../../js/script.js"></script>
+    <script src="../../../js/controllers/LabController.js"></script>
+
+    <script src="../../../js/services/MenuService.js"></script>
+    <script src="../../../js/services/DisplayService.js"></script>
+    <script src="../../../js/services/DatabaseService.js"></script>
+    <script src="../../../js/services/StringService.js"></script>
+
+</body>
+
+</html>

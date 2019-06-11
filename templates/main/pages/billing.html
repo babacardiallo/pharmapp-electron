@@ -1,0 +1,125 @@
+<md-content ng-controller="SaleController" ng-show="pharma">
+
+    <p>Pharmacie : <strong>{{pharma.nom ? pharma.nom : 'Aucune pharmacie sélectionnée'}}</strong></p>
+
+    <md-autocomplete md-selected-item-change="selectedCustomer(customer)" md-search-text="query" md-items="customer in customers | filter:query" md-item-text="customer.secu" md-min-length="0" placeholder="Liste des clients" md-menu-class="autocomplete-custom-template"
+        ng-model="query">
+
+        <md-item-template style="background-color: rgba(10, 136, 109, 0.918)">
+            <span class="item-title"><i class="fa fa-user"></i>&nbsp;<strong>{{customer.nom}} {{customer.prenom}}</strong></span>
+            <span class="item-metadata">
+        <span class="item-metastat">
+          Numéro de sécu : {{customer.secu}}<br>
+          Date de naissance : {{customer.datenaissance | date:'dd/MM/yyyy'}}
+        </span>
+            </span>
+        </md-item-template>
+
+    </md-autocomplete>
+
+    <div id="shopping">
+        <md-list ng-show="visible">
+            <md-list-item class="md-2-line" ng-repeat="customer in customers | filter:numsecu">
+                <div class="md-list-item-text">
+                    <h2>{{customer.prenom}} {{customer.nom}}</h2>
+
+                    <h3 class="margeHB">Sécurité sociale : <strong>{{customer.secu}}</strong></h3>
+
+                    <p>Date de naissance : {{customer.datenaissance | date:'dd/MM/yyyy'}}</p>
+                    <p>Adresse : {{customer.adresse}}, {{customer.codepostal}} {{customer.ville}}</p>
+                    <p>Téléphone : {{customer.telephone}}</p>
+
+                    <h3 class="margeHB">Régime obligatoire : <strong>{{customer.regimeoblig}}</strong></h3>
+
+                    <p>ALD : <strong>{{ customer.ald == 1 ? 'Oui' : 'Non' }}</strong></p>
+                    <p>Invalidité : <strong>{{ customer.invalidite == 1 ? 'Oui' : 'Non' }}</strong></p>
+                    <p>Accident de travail : <strong>{{ customer.accident == 1 ? 'Oui' : 'Non' }}</strong></p>
+
+                    <h3 class="margeHB">Régime complémentaire : {{ customer.regimecomp ? customer.regimecomp : 'Aucun' }}</h3>
+                </div>
+            </md-list-item>
+        </md-list>
+
+        <div ng-show="visible">
+            <h3>Sélectionnez un médecin</h3>
+            <md-autocomplete md-selected-item-change="selectedDoctor(doctor)" md-search-text="queryDoctor" md-items="doctor in doctors | filter:queryDoctor" md-item-text="doctor.cabinet" md-min-length="0" placeholder="Liste des médecins" md-menu-class="autocomplete-custom-template"
+                ng-model="queryDoctor">
+
+                <md-item-template>
+                    <span class="item-title"><strong>{{doctor.cabinet}}</strong></span>
+                    <span class="item-metadata">
+            <span class="item-metastat"><i class="fa fa-user-md"></i> Docteur {{doctor.prenom}} {{doctor.nom}}</span>
+                    </span>
+                </md-item-template>
+
+            </md-autocomplete>
+
+            <h3>Sélectionnez les produits</h3>
+            <md-autocomplete md-selected-item="selectedItem" md-selected-item-change="selectedItemChange(product)" md-search-text="searchText" md-search-text-change="searchTextChange(searchText)" md-items="product in products | filter:searchText" md-item-text="product.nom"
+                md-min-length="0" placeholder="Liste des produits" md-menu-class="autocomplete-custom-template" ng-model="productcart">
+
+                <md-item-template>
+                    <span class="item-title">{{product.nom}}</span>
+                    <span class="item-metadata">
+            <span class="item-metastat">
+              Prix : <strong>{{product.prix}} &euro;</strong>
+            </span>
+                    <span class="item-metastat">
+              Quantité : <strong>{{product.quantite}}</strong>
+            </span>
+                    </span>
+                </md-item-template>
+
+            </md-autocomplete>
+
+            <md-button aria-label="AddProductCart" ng-click="addProductCart()">Ajouter</md-button>
+
+            <!--<table class="table table-hover">-->
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            <md-checkbox ng-model="deleteAllProductCart" aria-label="DeleteAllProductCart" ng-click="toggleAll(listProductsCart)">
+                            </md-checkbox>
+                        </th>
+                        <th>CIP</th>
+                        <th>Produit</th>
+                        <th>Quantité</th>
+                        <th>Prix initial</th>
+                        <th>Vignette</th>
+                        <th>Prix réduit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="productcart in listProductsCart">
+                        <td>
+                            <md-checkbox ng-model="deleteProductCart" ng-checked="exists(productcart.cip,selected)" ng-click="toggle(productcart.cip,selected)" aria-label="DeleteProductCart">
+                            </md-checkbox>
+                        </td>
+                        <td>{{productcart.cip}}</td>
+                        <td>{{productcart.nom}}</td>
+                        <td><input type="text" ng-model="setQuantity" class="quantityProductCart" ng-value="productcart.updateQuantity" ng-change="change(setQuantity, productcart.cip, productcart.prix)"></td>
+                        <td>{{productcart.updatePrice}} &euro;</td>
+                        <td>{{productcart.pourcentage ? productcart.couleur + " (-" + (productcart.pourcentage*100) + "%)" : "Non"}}</td>
+                        <td>{{productcart.reducePrice}} &euro;</td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+            <div ng-show="selected.length > 0">
+                {{selected.length == 1 ? selected.length + ' élément sélectionné' : selected.length + ' éléments sélectionnés'}}
+                <md-button style="background-color: rgba(10, 136, 109, 0.918)" aria-label="Delete" ng-click="deleteSelectedProduct()">Supprimer</md-button>
+            </div>
+
+            <!--<code style="display: block; padding: 8px;">{{selected | json}}</code>
+      <code style="display: block; padding: 8px;">{{getAllCipToDelete() | json}}</code>-->
+
+            <div id="totalPriceCart">TOTAL INITIAL : {{getTotalPrice()}} &euro;</div>
+            <div id="totalPriceCartReduced"><strong>TOTAL REDUIT : {{getTotalPriceReduced()}} &euro;</strong></div>
+
+            <md-button style="background-color: rgba(10, 136, 109, 0.918)" aria-label="SaveProductCart" ng-click="saveBillingCart()">Enregistrer</md-button>
+        </div>
+    </div>
+
+</md-content>

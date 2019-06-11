@@ -1,0 +1,74 @@
+<html ng-app="Software">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../node_modules/angular-material/angular-material.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/font-awesome/css/font-awesome.min.css">
+    <meta name="viewport" content="initial-scale=1" />
+</head>
+
+<body layout="column" ng-controller="LoginController" id="authentication">
+    <md-toolbar style="background-color: rgba(10, 136, 109, 0.918)" class="md-primary">
+        <h1 class="md-toolbar-tools">PharmApp</h1>
+        <md-button class="closeTimes" ng-click="showConfirm()">&times;</md-button>
+    </md-toolbar>
+    <md-content layout-padding>
+        <form name="userForm" id="userForm">
+
+            <div class="block">
+                <i class="fa fa-user"></i>
+                <md-input-container>
+                    <label>Identifiant</label>
+                    <!--<input type="text" ng-model="login" name="login" required>-->
+                    <input type="text" ng-model="login">
+                </md-input-container>
+                <!--<div ng-messages="userForm.login.$error" ng-show="userForm.login.$touched">
+				    	<p ng-message="required" class="error">Le champ Login est obligatoire</p>
+				    </div>-->
+            </div>
+
+            <div class="block">
+                <i class="fa fa-lock"></i>
+                <md-input-container>
+                    <label>Mot de passe</label>
+                    <!--<input type="password" ng-model="password" name="password" required>-->
+                    <input type="password" ng-model="password">
+                </md-input-container>
+                <!--<div ng-messages="userForm.password.$error" ng-show="userForm.password.$touched">
+				    	<p ng-message="required" class="error">Le champ Password est obligatoire</p>
+				    </div>-->
+            </div>
+
+            <div id="buttons-control">
+                <md-button style="background-color: rgba(10, 136, 109, 0.918)" class="md-raised md-primary" flex flex-md="100" ng-click="connect()">Se connecter</md-button>
+                <md-button style="background-color: rgba(10, 136, 109, 0.918)" class="md-raised md-primary" flex flex-md="100" ng-click="register()">S'inscrire</md-button>
+            </div>
+
+        </form>
+    </md-content>
+
+    <script src="../dist/angulars.min.js"></script>
+
+    <!-- Angular Material Dependencies 
+	    <script src="../node_modules/angular/angular.min.js"></script>
+	    <script src="../node_modules/angular-animate/angular-animate.min.js"></script>
+	    <script src="../node_modules/angular-aria/angular-aria.min.js"></script>
+	    <script src="../node_modules/angular-material/angular-material.min.js"></script>
+	    <script src="../node_modules/angular-messages/angular-messages.min.js"></script>
+	    <script src="../node_modules/angular-sanitize/angular-sanitize.min.js"></script>-->
+
+    <script src="../app.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/controllers/LoginController.js"></script>
+    <script src="../js/controllers/RegisterController.js"></script>
+    <script src="../js/controllers/AppController.js"></script>
+
+    <script src="../js/services/MenuService.js"></script>
+    <script src="../js/services/DisplayService.js"></script>
+    <script src="../js/services/DatabaseService.js"></script>
+    <script src="../js/services/StringService.js"></script>
+
+</body>
+
+</html>

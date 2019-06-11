@@ -1,0 +1,61 @@
+<md-content ng-controller="SaleController" ng-show="pharma">
+
+    <p>Pharmacie : <strong>{{pharma.nom ? pharma.nom : 'Aucune pharmacie sélectionnée'}}</strong></p>
+
+    <h3>Sélectionnez les produits</h3>
+    <md-autocomplete md-selected-item="selectedItem" md-selected-item-change="selectedItemChange(product)" md-search-text="searchText" md-search-text-change="searchTextChange(searchText)" md-items="product in products | filter:searchText" md-item-text="product.nom"
+        md-min-length="0" placeholder="Liste des produits" md-menu-class="autocomplete-custom-template" ng-model="productcart">
+
+        <md-item-template>
+            <span class="item-title">{{product.nom}}</span>
+            <span class="item-metadata">
+				<span class="item-metastat">Prix : <strong>{{product.prix}} FCFA</strong></span>
+            <span class="item-metastat">Quantité : <strong>{{product.quantite}}</strong></span>
+            </span>
+        </md-item-template>
+
+    </md-autocomplete>
+
+    <md-button aria-label="AddProductCart" ng-click="addProductCart()">Ajouter</md-button>
+
+    <!--<table class="table table-hover">-->
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    <md-checkbox ng-model="deleteAllProductCart" aria-label="DeleteAllProductCart" ng-click="toggleAll(listProductsCart)">
+                    </md-checkbox>
+                </th>
+                <th>CIP</th>
+                <th>Produit</th>
+                <th>Quantité</th>
+                <th>Prix</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="productcart in listProductsCart">
+                <td>
+                    <md-checkbox ng-model="deleteProductCart" ng-checked="exists(productcart.cip,selected)" ng-click="toggle(productcart.cip,selected)" aria-label="DeleteProductCart">
+                    </md-checkbox>
+                </td>
+                <td>{{productcart.cip}}</td>
+                <td>{{productcart.nom}}</td>
+                <td><input type="text" ng-model="setQuantity" class="quantityProductCart" ng-value="productcart.updateQuantity" ng-change="change(setQuantity, productcart.cip, productcart.prix)"></td>
+                <td>{{productcart.updatePrice}} &euro;</td>
+            </tr>
+        </tbody>
+
+    </table>
+
+    <div ng-show="selected.length > 0">
+        {{selected.length == 1 ? selected.length + ' élément sélectionné' : selected.length + ' éléments sélectionnés'}}
+        <md-button aria-label="Delete" ng-click="deleteSelectedProduct()">Supprimer</md-button>
+    </div>
+
+    <!--<code style="display: block; padding: 8px;">{{selected | json}}</code>
+      <code style="display: block; padding: 8px;">{{listProductsCart | json}}</code>-->
+
+    <div id="totalPriceCart">TOTAL : {{getTotalPrice()}} FCFA</div>
+
+    <md-button aria-label="SaveProductCart" ng-click="saveSaleCart()">Enregistrer</md-button>
+</md-content>

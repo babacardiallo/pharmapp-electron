@@ -1,0 +1,39 @@
+<md-content ng-controller="ProductController" ng-show="pharma">
+
+    <p>Pharmacie : <strong>{{pharma.nom ? pharma.nom : 'Aucune pharmacie sélectionnée'}}</strong></p>
+
+    <p>Vous pouvez rechercher un médicament en tapant son <strong>nom</strong> dans la barre de recherche. Vous avez la possibilité d'écrire aussi la <strong>classe thérapeutique</strong>, ou la <strong>forme galénique</strong>, ou la <strong>vignette</strong>        pour filtrer les données.</p>
+
+    <md-input-container>
+        <label for="querySearch">Entrer votre recherche</label>
+        <input type="text" ng-model="query" aria-label="Search">
+    </md-input-container>
+
+    <div id="table-wrapper">
+        <div class="overflow" id="product-scroll">
+            <md-list>
+                <md-list-item class="md-3-line" ng-repeat="product in products | filter:query">
+                    <div class="md-list-item-text">
+                        <h3 class="product_name">{{product.nom}}</h3>
+                        <h4>Code CIP : {{product.cip}}</h4>
+                        <h4>Principe actif :
+                            <strong ng-repeat="ai in activeIngredients" ng-if="product.cip == ai.cip">
+            <span ng-repeat="nom in ai.pa">{{nom.principeactif}} </span>
+          </strong>
+                        </h4>
+                        <h4>Classe thérapeutique : <strong>{{product.nom_Classe}}</strong></h4>
+                        <h4>Forme galénique : <strong>{{product.libelle}}</strong></h4>
+                        <h4>Vignette : <strong>{{product.couleur != 'Pas de couleur' ? product.couleur : 'Aucune'}}</strong></h4>
+                        <p ng-bind-html="product.description"></p>
+                        <h3>Prix : <strong>{{product.prix ? product.prix + 'FCFA' : 'Pas de prix'}}</strong> le {{product.datechange|date:'dd/MM/yyyy'}}</h3>
+                        <h4>En stock : {{product.quantite > 0 ? 'Disponible (' + product.quantite + ')' : 'Indisponible'}}</h4>
+                    </div>
+                    <md-divider md-inset ng-if="!$last"></md-divider>
+                </md-list-item>
+            </md-list>
+        </div>
+    </div>
+
+    <div ng-show="(products | filter:query).length == 0" id="no_match">Aucun résultat</div>
+
+</md-content>

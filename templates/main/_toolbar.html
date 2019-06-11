@@ -1,0 +1,12 @@
+<md-toolbar style="background-color: rgba(10, 136, 109, 0.918)" layout="row">
+    <md-button ng-click="toggleSidenav('left')" hide-gt-sm class="md-icon-button menuBtn">
+        <div class="menu-icon" aria-label="Menu"><span></span></div>
+    </md-button>
+    <h1 class="md-toolbar-tools"><i class="fa fa-plus"></i>PharmApp</h1>
+    <div id="clock">
+        <div id="date">{{now | date:'dd/MM/yyyy'}}</div>
+        <div id="hour">{{now | date:'HH:mm:ss'}}</div>
+    </div>
+    <md-button aria-label="RefreshApp" ng-click="refresh()"><i class="fa fa-refresh"></i>
+    </md-button>
+</md-toolbar>

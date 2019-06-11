@@ -1,0 +1,79 @@
+<p>Bienvenue sur le tableau de bord de l'application PharmApp. Ici, vous pouvez gérer l'ensemble des données comme ajouter, modifier ou supprimer des informations.</p>
+
+<p><strong>Choissez votre pharmacie</strong></p>
+<md-autocomplete
+	md-selected-item-change="selectedPharmacy(pharmacy)"
+	md-search-text="queryPharmacy"
+	md-items="pharmacy in pharmacies | filter:queryPharmacy"
+	md-item-text="pharmacy.nom"
+	md-min-length="0"
+	placeholder="Liste des pharmacies"
+	md-menu-class="autocomplete-custom-template"
+	ng-model="queryPharmacy">
+	<md-item-template>
+		<span class="item-title"><i class="fa fa-plus"></i> <strong>{{pharmacy.nom}}</strong></span>
+		<span class="item-metadata">
+			<span class="item-metastat">
+				{{pharmacy.adresse}}, {{pharmacy.codepostal}} {{pharmacy.ville}}<br>
+				Téléphone : {{pharmacy.telephone}}
+			</span>
+		</span>
+	</md-item-template>
+</md-autocomplete>
+
+<p>Pharmacie sélectionnée : <strong>{{thisPharmacy.nom ? thisPharmacy.nom : 'Aucune pharmacie sélectionnée'}}</strong></p>
+
+<div ng-show="pharmacies.length == 0">
+	<md-button aria-label="AddPharmacy" class="button" ng-click="addPharm()">
+		<i class="fa fa-plus"></i><span>Créer votre première pharmacie</span>
+	</md-button>
+</div>
+<div ng-show="pharmacies.length != 0">
+	<md-button aria-label="AddPharmacy" class="button" ng-click="addPharm()">
+		<i class="fa fa-plus"></i><span>Ajouter une pharmacie</span>
+	</md-button>
+</div>
+
+<div ng-show="thisPharmacy.nom">
+	<h3>Ajouter des informations</h3>
+	<md-button aria-label="AddProduct" class="button" ng-click="addProduct()">
+		<i class="fa fa-cube"></i>
+		<span>Ajouter un produit</span>
+	</md-button>
+	<md-button aria-label="AddMD" class="button" ng-click="addMD()">
+		<i class="fa fa-user-md"></i>
+		<span>Ajouter un médecin</span>
+	</md-button>
+	<md-button aria-label="AddLaboratory" class="button" ng-click="addLaboratory()">
+		<i class="fa fa-flask"></i>
+		<span>Ajouter un laboratoire</span>
+	</md-button>
+
+	<h3>Mettre à jour des informations</h3>
+	<md-button aria-label="UpdateProduct" class="button" ng-click="updateProduct()">
+		<i class="fa fa-cube"></i>
+		<span>Mettre à jour un produit</span>
+	</md-button>
+	<md-button aria-label="UpdateMD" class="button" ng-click="updateMD()">
+		<i class="fa fa-user-md"></i>
+		<span>Mettre à jour un médecin</span>
+	</md-button>
+	<md-button aria-label="UpdateLaboratory" class="button" ng-click="updateLab()">
+		<i class="fa fa-flask"></i>
+		<span>Mettre à jour un laboratoire</span>
+	</md-button>
+
+	<h3>Supprimer des informations</h3>
+	<md-button aria-label="DeleteProduct" class="button" ng-click="deleteProduct()">
+		<i class="fa fa-cube"></i>
+		<span>Supprimer un produit</span>
+	</md-button>
+	<md-button aria-label="DeleteMD" class="button" ng-click="deleteMD()">
+		<i class="fa fa-user-md"></i>
+		<span>Supprimer un médecin</span>
+	</md-button>
+	<md-button aria-label="DeleteLaboratory" class="button" ng-click="deleteLab()">
+		<i class="fa fa-flask"></i>
+		<span>Supprimer un laboratoire</span>
+	</md-button>
+</div>

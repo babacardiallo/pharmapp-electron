@@ -1,0 +1,10 @@
+<md-list class="menu-list">
+  <md-item ng-repeat="menu in menus">
+    <md-item-content>
+      <md-button ng-click="selectMenu(menu)" ng-class="{'selected' : menu === selected }">
+        <i class="fa {{menu.iconurl}}"></i>
+        <span class="menu-name">{{menu.name}}</span>
+      </md-button>
+    </md-item-content>
+  </md-item>
+</md-list>

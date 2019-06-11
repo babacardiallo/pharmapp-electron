@@ -1,0 +1,91 @@
+<md-content ng-controller="TurnoverController">
+
+    <p>Pharmacie : <strong>{{pharma.nom ? pharma.nom : 'Aucune pharmacie sélectionnée'}}</strong></p>
+
+    <div ng-show="pharma.nom">
+        <table>
+            <thead>
+                <tr>
+                    <th class="center">Prix total</th>
+                    <th class="center">Prix total réduit</th>
+                    <th class="center">Total vente</th>
+                    <th class="center">Total facturation</th>
+                    <th class="center">Total facturation (prix réduit)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="center">{{sumTotalTurnover()}} FCFA</td>
+                    <td class="center">{{sumTotalReducedTurnover()}} FCFA</td>
+                    <td class="center">{{sumTotalSale()}} FCFA</td>
+                    <td class="center">{{sumTotalBilling()}} FCFA</td>
+                    <td class="center">{{sumTotalReducedBilling()}} FCFA</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <span>Filtrer par :</span>
+        <md-select placeholder="Filtrer par" ng-init="queryTurnover = ''" ng-model="queryTurnover">
+            <md-option value="">Tous</md-option>
+            <md-option value="facturation">Facturation</md-option>
+            <md-option value="vente">Vente</md-option>
+        </md-select>
+
+        <div id="table-wrapper">
+            <div class="overflow" id="table-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th ng-show="queryTurnover == ''">Type</th>
+                            <th ng-show="queryTurnover == 'facturation' || queryTurnover == ''">Numéro sécu</th>
+                            <th>CIP</th>
+                            <th>Quantité</th>
+                            <th>Prix total</th>
+                            <th ng-show="queryTurnover == 'facturation' || queryTurnover == ''">Prix total réduit</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="turnover in turnovers | filter:queryTurnover | orderBy:'created_at':true">
+                            <td ng-show="queryTurnover == ''">{{turnover.type}}</td>
+                            <td ng-show="queryTurnover == 'facturation' || queryTurnover == ''">{{turnover.numsecu}}</td>
+                            <td>{{turnover.cip}}</td>
+                            <td>{{turnover.quantite}}</td>
+                            <td>{{turnover.prixtotal}} FCFA</td>
+                            <td ng-show="queryTurnover == 'facturation' || queryTurnover == ''">{{turnover.prixtotalreduit ? turnover.prixtotalreduit + " FCFA" : ""}}</td>
+                            <td>{{turnover.datevente | date:'dd/MM/yyyy'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <h3>Stock de médicaments</h3>
+        <md-input-container>
+            <label for="queryMedicine">Chercher un médicament</label>
+            <input type="text" ng-model="queryMedicine" aria-label="Search">
+        </md-input-container>
+
+        <div id="table-wrapper">
+            <div class="overflow" id="table-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>CIP</th>
+                            <th>Nom</th>
+                            <th>Quantité</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="product in products | filter:queryMedicine">
+                            <td>{{product.cip}}</td>
+                            <td>{{product.nom}}</td>
+                            <td class="{{product.quantite<10 ? 'important' : ''}}">{{product.quantite>0 ? product.quantite : 'Indisponible'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</md-content>

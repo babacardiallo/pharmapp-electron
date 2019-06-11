@@ -1,0 +1,26 @@
+<md-content ng-controller="LabController">
+
+  <md-input-container>
+    <label for="querySearch">Entrer votre recherche</label>
+    <input type="text" ng-model="query" aria-label="Search">
+  </md-input-container>
+
+  <div id="table-wrapper">
+  <div class="overflow" id="lab-scroll">
+  <md-list>
+    <md-list-item class="md-3-line" ng-repeat="laboratory in laboratories | filter:query">
+      <div class="md-list-item-text">
+        <h3>{{laboratory.nom}}</h3>
+        <h4>Téléphone : {{laboratory.telephone}}</h4>
+        <h4>Fax : {{ (laboratory.fax && laboratory.fax != '') ? laboratory.fax : 'Non renseigné' }}</h4>
+        <p>{{laboratory.adresse}}, {{laboratory.codepostal}} {{laboratory.ville}}</p>
+      </div>
+      <md-divider md-inset ng-if="!$last"></md-divider>
+    </md-list-item>
+  </md-list>
+  </div>
+  </div>
+
+  <div ng-show="(laboratories | filter:query).length == 0" id="no_match">Aucun résultat</div>
+  
+</md-content>

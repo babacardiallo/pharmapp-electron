@@ -1,0 +1,27 @@
+<md-content ng-controller="DoctorController">
+
+  <md-input-container>
+    <label for="querySearch">Entrer votre recherche</label>
+    <input type="text" ng-model="query" aria-label="Search">
+  </md-input-container>
+
+  <div id="table-wrapper">
+  <div class="overflow" id="doctor-scroll">
+  <md-list>
+    <md-list-item class="md-3-line" ng-repeat="doctor in doctors | filter:query">
+      <div class="md-list-item-text">
+        <h3>{{doctor.cabinet}}</h3>
+        <h4>Docteur {{doctor.prenom}} {{doctor.nom}}</h4>
+        <p>{{doctor.adresse}}, {{doctor.codepostal}} {{doctor.ville}}</p>
+        <p>Téléphone : {{doctor.telephone}}</p>
+        <p>Fax : {{ (doctor.fax && doctor.fax != '') ? doctor.fax : 'Non renseigné' }}</p>
+      </div>
+      <md-divider md-inset ng-if="!$last"></md-divider>
+    </md-list-item>
+  </md-list>
+  </div>
+  </div>
+
+  <div ng-show="(doctors | filter:query).length == 0" id="no_match">Aucun résultat</div>
+  
+</md-content>

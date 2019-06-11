@@ -1,0 +1,55 @@
+<html ng-app="Software">
+  <head>
+    <meta charset="UTF-8">
+    <title>PharmApp</title>
+    <link rel="stylesheet" href="../node_modules/angular-material/angular-material.min.css">
+    <link rel="stylesheet" href="../css/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <meta name="viewport" content="initial-scale=1" />
+  </head>
+
+  <body layout="column" ng-controller="AppController" id="app">
+
+    <ng-toolbar></ng-toolbar>
+
+    <div layout="row" flex class="content-wrapper">
+        <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
+          <div ng-sidenav-menu></div>
+        </md-sidenav>
+
+        <ng-content></ng-content>
+
+        <!--<div ng-sidenav-search></div>-->
+    </div>
+    
+    <script src="../dist/angulars.min.js"></script>
+
+    <!-- Angular Material Dependencies 
+    <script src="../node_modules/angular/angular.min.js"></script>
+    <script src="../node_modules/angular-animate/angular-animate.min.js"></script>
+    <script src="../node_modules/angular-aria/angular-aria.min.js"></script>
+    <script src="../node_modules/angular-material/angular-material.min.js"></script>
+    <script src="../node_modules/angular-messages/angular-messages.min.js"></script>
+    <script src="../node_modules/angular-sanitize/angular-sanitize.min.js"></script>-->
+    
+    <script src="../app.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/controllers/LoginController.js"></script>
+    <script src="../js/controllers/RegisterController.js"></script>
+    <script src="../js/controllers/AppController.js"></script>
+    <script src="../js/controllers/SaleController.js"></script>
+    <script src="../js/controllers/TurnoverController.js"></script>
+    <script src="../js/controllers/DoctorController.js"></script>
+    <script src="../js/controllers/ProductController.js"></script>
+    <script src="../js/controllers/LabController.js"></script>
+
+    <script src="../js/services/MenuService.js"></script>
+    <script src="../js/services/DisplayService.js"></script>
+    <script src="../js/services/DatabaseService.js"></script>
+    <script src="../js/services/StringService.js"></script>
+    
+    <script src="../js/directives/directives.js"></script>
+
+  </body>
+
+</html>

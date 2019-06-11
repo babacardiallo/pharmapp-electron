@@ -1,0 +1,424 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300ita‌​lic,400italic,500,500italic,700,700italic,900italic,900);
+body.layout-column {
+    font-family: Roboto !important;
+    font-size: 16px;
+    color: #212121;
+    height: initial !important;
+}
+
+.block {
+    position: relative;
+}
+
+#authentication #userForm md-input-container {
+    margin-left: 50px;
+    margin-right: 25px;
+}
+
+.search md-input-container {
+    margin: 0;
+    padding: 2px;
+}
+
+.fa,
+md-checkbox.md-checked .md-icon,
+.item-title i.fa.fa-plus {
+    color: rgba(10, 136, 109, 0.918);
+}
+
+i.fa.fa-plus {
+    color: #fff;
+    margin-right: 5px;
+}
+
+i.fa.fa-refresh {
+    color: #fff;
+    margin-right: 5px;
+    right: 50%;
+    top: 0;
+    font-size: 18px;
+    transform: translateX(25%);
+}
+
+#authentication .fa-user,
+#authentication .fa-lock {
+    position: absolute;
+    left: 25px;
+    top: 30px;
+}
+
+form .block md-input-container {
+    margin: 0 10px;
+}
+
+form .error {
+    margin: -20px 0 0 15px;
+    font-size: 10px;
+    color: red;
+}
+
+form input[name="firstname"],
+
+/*form input[name="address"], */
+
+form input[name="city"] {
+    text-transform: capitalize;
+}
+
+form input[name="lastname"] {
+    text-transform: uppercase;
+}
+
+.dialogdemoBasicUsage .dialog-demo-content div {
+    text-align: center;
+}
+
+.dialogdemoBasicUsage .md-subheader {
+    background-color: #dcedc8;
+    margin: 0;
+}
+
+.closeTimes {
+    text-decoration: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 25px;
+    color: #fff !important;
+}
+
+.md-toolbar-tools,
+.md-toolbar-tools i {
+    color: #fff;
+}
+
+.md-toolbar-tools i {
+    margin-right: 10px;
+}
+
+.md-button.md-icon-button.menuBtn {
+    margin-top: 6px;
+    margin-right: 0;
+}
+
+.md-button.md-primary.md-raised {
+    color: #fff;
+    width: 96%;
+}
+
+.menu-list .md-button {
+    color: inherit;
+    text-align: left;
+    width: 288px;
+    padding: 5px;
+}
+
+.menu-list .selected {
+    color: rgba(10, 136, 109, 0.918);
+}
+
+.face {
+    border-radius: 30px;
+    border: 1px solid #ddd;
+    display: inline-block;
+    margin: 4px 16px;
+    vertical-align: middle;
+    width: 48px;
+}
+
+.content-wrapper {
+    position: relative;
+    overflow: initial !important;
+}
+
+#primary-col {
+    overflow: hidden;
+}
+
+#primary-col .md-button {
+    margin: 8px auto 16px 0;
+}
+
+#primary-col .cell {
+    flex: 1 1 auto;
+}
+
+#primary-col img {
+    display: block;
+    max-width: 100%;
+}
+
+
+/*hamburger icon*/
+
+
+/*
+menu-icon-bg: #052b23;
+menu-icon-color: #fff;
+duration: 0.5s;
+*/
+
+.menu-icon {
+    position: relative;
+    margin-top: -2px;
+}
+
+.menu-icon span {
+    width: 22px;
+    height: 2px;
+    background-color: #fff;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.menu-icon span::before,
+.menu-icon span::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: #fff;
+    transform: translateY(-6px);
+    /*transition: transform 0.5s;*/
+}
+
+.menu-icon span::after {
+    transform: translateY(6px);
+}
+
+
+/*.menu-icon:hover span::before { transform: translateY(-8px); }
+.menu-icon:hover span::after { transform: translateY(8px); }*/
+
+md-item-content button.md-button i.fa {
+    font-size: 35px;
+    position: absolute;
+}
+
+button.md-button span.menu-name {
+    margin-left: 55px;
+}
+
+#clock {
+    font-size: 15px;
+    width: 100%;
+    color: white;
+    margin: 10px;
+    text-align: right;
+}
+
+#hour {
+    font-size: 21px;
+}
+
+md-list-item.md-3-line {
+    padding: 25px;
+}
+
+.dividerdemoBasicUsage .face {
+    border-radius: 30px;
+    border: 1px solid #ddd;
+    width: 48px;
+    margin: 16px;
+}
+
+.error {
+    margin: -15px 0 0 53px;
+    font-size: 13px;
+    color: red;
+}
+
+#buttons-control {
+    margin-top: 20px;
+}
+
+#title_menu>i {
+    margin-right: 10px;
+}
+
+
+/*.md-sidenav-left.md-whiteframe-z2 {
+  height: 100%;
+}*/
+
+ng-content {
+    width: 100%;
+}
+
+#registerName .block {
+    width: 32%;
+    display: inline-block;
+}
+
+#registerTel .block,
+#registerCity .block,
+#registerLogin .block,
+.superblock .block {
+    width: 49%;
+    display: inline-block;
+}
+
+.button {
+    background-color: rgba(10, 136, 109, 0.918);
+    color: white;
+    height: 100px;
+    /*width: 250px;*/
+}
+
+.button:not([disable]):hover,
+#clock+.md-button:not([disable]):hover {
+    background-color: rgba(10, 136, 109, 0.918);
+}
+
+.button i {
+    color: white;
+    font-size: 50px;
+    display: block;
+    margin-right: 0;
+    margin-top: 5px;
+}
+
+.button_category {
+    display: inline;
+}
+
+h3.product_name {
+    font-weight: bold !important;
+    font-size: 18px !important;
+}
+
+md-list-item md-divider[md-inset] {
+    left: 18px !important;
+}
+
+#no_match {
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 18px;
+}
+
+
+/*#app .md-focused {
+  background-color: #4CAF50 !important;
+}*/
+
+.margeHB {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+}
+
+.autocomplete-custom-template li {
+    border-bottom: 1px solid #ccc;
+    height: auto;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    white-space: normal;
+}
+
+.autocomplete-custom-template li:last-child {
+    border-bottom-width: 0;
+}
+
+.autocomplete-custom-template .item-title,
+.autocomplete-custom-template .item-metadata {
+    display: block;
+    line-height: 2;
+}
+
+.autocomplete-custom-template .item-title md-icon {
+    height: 18px;
+    width: 18px;
+}
+
+md-checkbox {
+    margin: 0 !important;
+}
+
+.quantityProductCart {
+    border-top: 0px;
+    border-right: 0px;
+    border-left: 0px;
+    width: 60px;
+    text-align: center;
+    transition: border-bottom-color .5s;
+    background-color: transparent;
+}
+
+.quantityProductCart:focus {
+    border-bottom-color: rgba(10, 136, 109, 0.918);
+    outline: none;
+}
+
+md-checkbox.md-checked .md-icon {
+    background-color: rgba(10, 136, 109, 0.918);
+}
+
+md-checkbox.md-checked .md-ink-ripple {
+    color: rgba(10, 136, 109, 0.918);
+}
+
+#table-wrapper {
+    position: relative;
+}
+
+.overflow {
+    overflow: auto;
+}
+
+#table-scroll {
+    height: 150px;
+}
+
+#doctor-scroll {
+    height: 163px;
+}
+
+#lab-scroll {
+    height: 146px;
+}
+
+#product-scroll {
+    height: 236px;
+}
+
+table {
+    width: 100%;
+    margin-bottom: 40px;
+    border-collapse: collapse;
+}
+
+table td {
+    padding: 7px;
+}
+
+table th {
+    text-align: left;
+    padding: 7px;
+    border-bottom: 2px solid rgba(10, 136, 109, 0.918);
+}
+
+table tbody tr:hover {
+    background-color: #F0FFF1;
+}
+
+table thead tr th,
+table tbody tr td {
+    border-right: 0;
+    border-left: 0;
+}
+
+.center {
+    text-align: center;
+}
+
+.important {
+    font-weight: bold;
+    color: red;
+}
